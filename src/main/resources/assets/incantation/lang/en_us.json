@@ -1,0 +1,7 @@
+{
+     "incantation.midnightconfig.category.client": "Client",
+     "incantation.midnightconfig.allowParticles": "Allow Particles",
+
+     "incantation.midnightconfig.category.common": "Common",
+     "incantation.midnightconfig.particleMultiplier": "Particle Multiplier"
+}

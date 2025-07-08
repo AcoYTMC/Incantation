@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "incantation",
+	"version": "${version}",
+	"name": "Incantation",
+	"description": "There was no magic in such Incantation.",
+	"authors": [
+		"AcoYT"
+	],
+	"license": "ARR",
+	"icon": "assets/incantation/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.acoyt.incantation.Incantation"
+		],
+		"client": [
+			"net.acoyt.incantation.IncantationClient"
+		],
+          "modmenu": [
+               "net.acoyt.incantation.compat.IncaModMenu"
+          ],
+          "cardinal-components": [
+               "net.acoyt.incantation.cca.IncaComponents"
+          ]
+	},
+	"mixins": [
+		"incantation.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*",
+		"acornlib": ">=2.7.1",
+		"goop": "*"
+	},
+     "custom": {
+          "cardinal-components": [
+               "incantation:incaling"
+          ]
+     }
+}
