@@ -3,12 +3,14 @@ package net.acoyt.incantation;
 import com.mojang.logging.LogUtils;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
+import net.acoyt.incantation.command.IncaPupCommand;
 import net.acoyt.incantation.compat.IncaConfig;
 import net.acoyt.incantation.init.IncaBlocks;
 import net.acoyt.incantation.init.IncaItems;
 import net.acoyt.incantation.networking.SubmersionTogglePacketReceiver;
 import net.acoyt.incantation.util.IncaUtils;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 
@@ -27,6 +29,9 @@ public class Incantation implements ModInitializer {
 
         // Packets
         SubmersionTogglePacketReceiver.registerServerPacket();
+
+        // Commands
+        CommandRegistrationCallback.EVENT.register(IncaPupCommand::register);
 	}
 
 	public static Identifier id(String path) {

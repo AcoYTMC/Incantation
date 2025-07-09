@@ -7,7 +7,7 @@ public class IncaConfig extends MidnightConfig {
     public static final String common = "common";
 
     @Entry(category = client)
-    public static boolean allowParticles;
+    public static boolean allowParticles = true;
 
     @Entry(category = common, min = 0, max = 5)
     public static int particleMultiplier = 1;

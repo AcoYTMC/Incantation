@@ -29,18 +29,22 @@ public class IncaKeyBindings {
 
     private static void setupToggleDetection() {
         ClientTickEvents.START_CLIENT_TICK.register(client -> {
-            if (client.player != null) {
+            if (client.player != null && submergedToggle.wasPressed()) {
                 handleTogglePress(client);
             }
         });
     }
 
     // Global variable to track the last time the key was pressed
-    private static long lastToggleTime = 0;  // Time of last swap in milliseconds
+    private static long lastToggleTime = 0;  // Time of last toggle in milliseconds
     private static final long COOLDOWN_TIME = 500;  // Cooldown time in milliseconds (500 ms = 0.5 seconds)
 
     private static void handleTogglePress(MinecraftClient client) {
         if (client.player == null) {
+            return;
+        }
+
+        if (!client.player.isOnGround() || !IncaUtils.isIncaling(client.player)) {
             return;
         }
 

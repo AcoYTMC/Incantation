@@ -3,5 +3,8 @@
      "incantation.midnightconfig.allowParticles": "Allow Particles",
 
      "incantation.midnightconfig.category.common": "Common",
-     "incantation.midnightconfig.particleMultiplier": "Particle Multiplier"
+     "incantation.midnightconfig.particleMultiplier": "Particle Multiplier",
+
+     "category.incantation": "Incantation",
+     "key.incantation.submergedToggle": "Toggle Submerged"
 }

@@ -1,0 +1,42 @@
+package net.acoyt.incantation.client.render.entity.feature;
+
+import net.acoyt.incantation.client.render.entity.model.IncaWingsModel;
+import net.acoyt.incantation.util.IncaTextures;
+import net.acoyt.incantation.util.IncaUtils;
+import net.acoyt.incantation.util.interfaces.PlayerEntityRenderStateAccess;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.feature.FeatureRenderer;
+import net.minecraft.client.render.entity.feature.FeatureRendererContext;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
+import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.player.PlayerEntity;
+
+public class IncaWingsFeatureRenderer extends FeatureRenderer<PlayerEntityRenderState, PlayerEntityModel> {
+    private final IncaWingsModel model;
+
+    public IncaWingsFeatureRenderer(FeatureRendererContext<PlayerEntityRenderState, PlayerEntityModel> context) {
+        super(context);
+        this.model = new IncaWingsModel(context.getModel().head, RenderLayer::getEntityCutoutNoCull);
+    }
+
+    public static boolean shouldRender(PlayerEntity player) {
+        return IncaUtils.isIncaling(player);
+    }
+
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntityRenderState renderState, float limbAngle, float limbDistance) {
+        if (renderState instanceof PlayerEntityRenderStateAccess access) {
+            if (shouldRender(access.inca$getPlayerEntity())) {
+                int overlay = LivingEntityRenderer.getOverlay(renderState, 0.0F);
+                matrices.push();
+                float scale = 1.0F;
+                matrices.scale(scale, scale, scale);
+                this.model.render(matrices, vertexConsumers.getBuffer(this.model.getLayer(IncaTextures.WINGS)), light, overlay, -1);
+                this.model.animate(IncaWingsModel.WingAnimations.idle);
+                matrices.pop();
+            }
+        }
+    }
+}

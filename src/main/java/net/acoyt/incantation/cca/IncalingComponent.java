@@ -7,7 +7,7 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 public class IncalingComponent implements AutoSyncedComponent {
     private final PlayerEntity player;
-    private boolean isInked = false;
+    private boolean isIncaling = false;
     private boolean isSubmerged = false;
 
     public IncalingComponent(PlayerEntity player) {
@@ -22,31 +22,31 @@ public class IncalingComponent implements AutoSyncedComponent {
         IncaComponents.INCALING.sync(this.player);
     }
 
-    public boolean isInked() {
-        return isInked;
+    public boolean isIncaling() {
+        return this.isIncaling;
     }
 
-    public void setInked(boolean inked) {
-        this.isInked = inked;
+    public void setIncaling(boolean isIncaling) {
+        this.isIncaling = isIncaling;
         this.sync();
     }
 
     public boolean isSubmerged() {
-        return isSubmerged;
+        return this.isSubmerged;
     }
 
-    public void setSubmerged(boolean submerged) {
-        this.isSubmerged = submerged;
+    public void setSubmerged(boolean isSubmerged) {
+        this.isSubmerged = isSubmerged;
         this.sync();
     }
 
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.isInked = tag.getBoolean("isInked", false);
+        this.isIncaling = tag.getBoolean("isIncaling", false);
         this.isSubmerged = tag.getBoolean("isSubmerged", false);
     }
 
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
-        tag.putBoolean("isInked", this.isInked);
+        tag.putBoolean("isIncaling", this.isIncaling);
         tag.putBoolean("isSubmerged", this.isSubmerged);
     }
 }
