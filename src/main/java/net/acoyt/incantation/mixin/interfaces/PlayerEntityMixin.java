@@ -1,6 +1,7 @@
-package net.acoyt.incantation.mixin;
+package net.acoyt.incantation.mixin.interfaces;
 
-import net.acoyt.incantation.util.interfaces.PlayerEntityWingIdle;
+import net.acoyt.incantation.util.interfaces.PlayerAnimationStateAccess;
+import net.acoyt.incantation.util.interfaces.PlayerCosmeticHolder;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,8 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityWingIdle {
-    @Unique private AnimationState wingIdleState = new AnimationState();
+public abstract class PlayerEntityMixin extends LivingEntity implements PlayerAnimationStateAccess, PlayerCosmeticHolder {
+    @Unique private final AnimationState wingIdleState = new AnimationState();
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);

@@ -5,16 +5,24 @@ import net.minecraft.client.util.SkinTextures;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 import java.util.UUID;
 
 import static net.acoyt.acornlib.util.AcornLibUtils.acoUuid;
 
 public class IncaUtils {
     public static final int modNameColor = 0x785876;
+    private static final List<UUID> wingedIncalings = List.of(
+            UUID.fromString("017f5cdc-086b-4d98-a0c2-7dc43d5117bd") // AcoYT
+    );
 
     // Booleans
     public static boolean isIncaling(PlayerEntity player) {
         return IncalingComponent.get(player).isIncaling();
+    }
+
+    public static boolean isWingedIncaling(PlayerEntity player) {
+        return isIncaling(player) && wingedIncalings.contains(player.getUuid());
     }
 
     public static boolean isSubmerged(PlayerEntity player) {

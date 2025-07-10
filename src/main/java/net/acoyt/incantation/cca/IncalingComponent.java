@@ -4,11 +4,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
+import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
-public class IncalingComponent implements AutoSyncedComponent {
+public class IncalingComponent implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity player;
-    private boolean isIncaling = false;
-    private boolean isSubmerged = false;
+    private boolean incaling = false;
+    private boolean submerged = false;
 
     public IncalingComponent(PlayerEntity player) {
         this.player = player;
@@ -22,31 +23,37 @@ public class IncalingComponent implements AutoSyncedComponent {
         IncaComponents.INCALING.sync(this.player);
     }
 
-    public boolean isIncaling() {
-        return this.isIncaling;
+    public void tick() {
+        if (!incaling && submerged) {
+            submerged = false;
+        }
     }
 
-    public void setIncaling(boolean isIncaling) {
-        this.isIncaling = isIncaling;
+    public boolean isIncaling() {
+        return this.incaling;
+    }
+
+    public void setIncaling(boolean incaling) {
+        this.incaling = incaling;
         this.sync();
     }
 
     public boolean isSubmerged() {
-        return this.isSubmerged;
+        return this.submerged;
     }
 
-    public void setSubmerged(boolean isSubmerged) {
-        this.isSubmerged = isSubmerged;
+    public void setSubmerged(boolean submerged) {
+        this.submerged = submerged;
         this.sync();
     }
 
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
-        this.isIncaling = tag.getBoolean("isIncaling", false);
-        this.isSubmerged = tag.getBoolean("isSubmerged", false);
+        this.incaling = tag.getBoolean("incaling", false);
+        this.submerged = tag.getBoolean("submerged", false);
     }
 
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup wrapperLookup) {
-        tag.putBoolean("isIncaling", this.isIncaling);
-        tag.putBoolean("isSubmerged", this.isSubmerged);
+        tag.putBoolean("incaling", this.incaling);
+        tag.putBoolean("submerged", this.submerged);
     }
 }
