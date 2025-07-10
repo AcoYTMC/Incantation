@@ -24,19 +24,6 @@ repositories {
 		}
 	}
 
-    // GeckoLib
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'GeckoLib'
-                url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-            }
-        }
-        filter {
-            includeGroup('software.bernie.geckolib')
-        }
-    }
-
 	// Mod Menu
 	maven {
 		name = "Terraformers"
@@ -79,9 +66,6 @@ dependencies {
 
 	// Goop
 	modImplementation "com.github.absolutelyaya:goop:${project.goop_version}"
-
-    // GeckoLib
-    modImplementation "software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}"
 }
 
 processResources {

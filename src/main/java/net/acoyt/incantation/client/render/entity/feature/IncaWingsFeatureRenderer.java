@@ -14,6 +14,7 @@ import net.minecraft.client.render.entity.model.LoadedEntityModels;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class IncaWingsFeatureRenderer extends FeatureRenderer<PlayerEntityRenderState, PlayerEntityModel> {
@@ -30,13 +31,14 @@ public class IncaWingsFeatureRenderer extends FeatureRenderer<PlayerEntityRender
 
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntityRenderState renderState, float limbAngle, float limbDistance) {
         if (renderState instanceof PlayerEntityRenderStateAccess access) {
-            if (shouldRender(access.inca$getPlayerEntity())) {
+            PlayerEntity player = access.inca$getPlayerEntity();
+            if (shouldRender(player)) {
                 matrices.push();
                 matrices.translate(0.0F, 0.0F, 1.0F);
                 float scale = 1.0F;
                 matrices.scale(scale, scale, scale);
                 this.model.render(matrices, vertexConsumers.getBuffer(this.model.getLayer(IncaTextures.WINGS)), light, OverlayTexture.DEFAULT_UV, 0xFFFFFF);
-                this.model.animate(IncaWingsModel.WingAnimations.idle);
+                this.model.animate(new AnimationState(), IncaWingsModel.WingAnimations.idle, player.age);
                 matrices.pop();
             }
         }

@@ -11,7 +11,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
 
-@SuppressWarnings("ALL")
 public class IncaWingsModel extends Model {
     private final ModelPart root;
     private final ModelPart body;
@@ -46,12 +45,9 @@ public class IncaWingsModel extends Model {
         return TexturedModelData.of(modelData, 64, 64);
     }
 
+    @Override
     public void animate(AnimationState animationState, Animation animation, float age) {
-        super.animate(animationState, animation, age, 0.5F);
-    }
-
-    public void animate(Animation animation) {
-        super.animate(animation);
+        super.animate(animationState, animation, age);
     }
 
     public static class WingAnimations {

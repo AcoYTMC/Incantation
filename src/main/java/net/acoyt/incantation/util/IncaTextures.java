@@ -1,8 +1,6 @@
 package net.acoyt.incantation.util;
 
 import net.acoyt.incantation.Incantation;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.util.SkinTextures;
 import net.minecraft.util.Identifier;
 
 import java.util.UUID;
