@@ -5,6 +5,7 @@ import net.acoyt.incantation.init.IncaModelLayers;
 import net.acoyt.incantation.util.IncaTextures;
 import net.acoyt.incantation.util.IncaUtils;
 import net.acoyt.incantation.util.interfaces.PlayerEntityRenderStateAccess;
+import net.acoyt.incantation.util.interfaces.PlayerEntityWingIdle;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -32,14 +33,16 @@ public class IncaWingsFeatureRenderer extends FeatureRenderer<PlayerEntityRender
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntityRenderState renderState, float limbAngle, float limbDistance) {
         if (renderState instanceof PlayerEntityRenderStateAccess access) {
             PlayerEntity player = access.inca$getPlayerEntity();
-            if (shouldRender(player)) {
-                matrices.push();
-                matrices.translate(0.0F, 0.0F, 1.0F);
-                float scale = 1.0F;
-                matrices.scale(scale, scale, scale);
-                this.model.render(matrices, vertexConsumers.getBuffer(this.model.getLayer(IncaTextures.WINGS)), light, OverlayTexture.DEFAULT_UV, 0xFFFFFF);
-                this.model.animate(new AnimationState(), IncaWingsModel.WingAnimations.idle, player.age);
-                matrices.pop();
+            if (player instanceof PlayerEntityWingIdle wingIdle) {
+                if (shouldRender(player)) {
+                    matrices.push();
+                    matrices.translate(0.0F, 0.0F, 1.0F);
+                    float scale = 1.0F;
+                    matrices.scale(scale, scale, scale);
+                    this.model.render(matrices, vertexConsumers.getBuffer(this.model.getLayer(IncaTextures.WINGS)), light, OverlayTexture.DEFAULT_UV, 0xFFFFFF);
+                    this.model.animate(wingIdle.inca$getWingIdleState(), IncaWingsModel.WingAnimations.idle, player.age);
+                    matrices.pop();
+                }
             }
         }
     }

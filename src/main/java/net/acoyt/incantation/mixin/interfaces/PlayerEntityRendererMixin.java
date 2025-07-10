@@ -1,6 +1,7 @@
 package net.acoyt.incantation.mixin.interfaces;
 
 import net.acoyt.incantation.util.interfaces.PlayerEntityRenderStateAccess;
+import net.acoyt.incantation.util.interfaces.PlayerEntityWingIdle;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
@@ -15,6 +16,9 @@ public class PlayerEntityRendererMixin {
     public void updateRenderState(AbstractClientPlayerEntity clientPlayer, PlayerEntityRenderState renderState, float f, CallbackInfo ci) {
         if (renderState instanceof PlayerEntityRenderStateAccess access) {
             access.inca$setPlayerEntity(clientPlayer);
+            if (clientPlayer instanceof PlayerEntityWingIdle idle) {
+                access.inca$getWingIdleState().copyFrom(idle.inca$getWingIdleState());
+            }
         }
     }
 }
