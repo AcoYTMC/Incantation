@@ -15,9 +15,9 @@ import net.minecraft.text.Text;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class IncaPupCommand {
+public class IncalingCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess acc, CommandManager.RegistrationEnvironment dedicated) {
-        dispatcher.register(literal("inca_pup").requires(source -> source.hasPermissionLevel(2))
+        dispatcher.register(literal("incaling").requires(source -> source.hasPermissionLevel(2))
                 .then(literal("set")
                         .then(argument("players", EntityArgumentType.players())
                                 .then(argument("value", BoolArgumentType.bool())

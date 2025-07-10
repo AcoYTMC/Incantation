@@ -3,7 +3,7 @@ package net.acoyt.incantation;
 import com.mojang.logging.LogUtils;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
-import net.acoyt.incantation.command.IncaPupCommand;
+import net.acoyt.incantation.command.IncalingCommand;
 import net.acoyt.incantation.compat.IncaConfig;
 import net.acoyt.incantation.init.IncaBlocks;
 import net.acoyt.incantation.init.IncaItems;
@@ -31,7 +31,7 @@ public class Incantation implements ModInitializer {
         SubmersionTogglePacketReceiver.registerServerPacket();
 
         // Commands
-        CommandRegistrationCallback.EVENT.register(IncaPupCommand::register);
+        CommandRegistrationCallback.EVENT.register(IncalingCommand::register);
 	}
 
 	public static Identifier id(String path) {

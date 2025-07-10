@@ -4,8 +4,11 @@
      "compatibilityLevel": "JAVA_21",
      "mixins": [],
      "client": [
+          "client.AbstractClientPlayerEntityMixin",
+          "client.ArmorFeatureRendererMixin",
           "client.CapeFeatureRendererMixin",
           "client.HeldItemRendererMixin",
+          "client.PlayerEntityRendererMixin",
           "client.WorldRendererMixin",
           "interfaces.PlayerEntityRendererMixin",
           "interfaces.PlayerRenderStateMixin",

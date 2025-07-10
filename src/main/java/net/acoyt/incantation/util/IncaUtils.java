@@ -26,7 +26,8 @@ public class IncaUtils {
         return new SkinTextures(skinId, defaultTextures.textureUrl(), defaultTextures.capeTexture(), defaultTextures.elytraTexture(), model, defaultTextures.secure());
     }
 
-    public static SkinTextures getTextures(UUID uuid, SkinTextures defaultTextures, SkinTextures.Model model) {
+    public static SkinTextures getTextures(UUID uuid, SkinTextures defaultTextures) {
+        SkinTextures.Model model = defaultTextures.model();
         if (uuid.equals(acoUuid)) {
             return createTextures(defaultTextures, IncaTextures.ACO, SkinTextures.Model.SLIM);
         }

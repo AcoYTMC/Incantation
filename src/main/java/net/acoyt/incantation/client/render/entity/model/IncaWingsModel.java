@@ -6,6 +6,7 @@ import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.animation.AnimationHelper;
 import net.minecraft.client.render.entity.animation.Keyframe;
 import net.minecraft.client.render.entity.animation.Transformation;
+import net.minecraft.entity.AnimationState;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
@@ -43,6 +44,10 @@ public class IncaWingsModel extends Model {
         ModelPartData wing_right_2 = wing_right_1.addChild("wing_right_2", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -5.0F, 0.0F, 8.0F, 8.0F, 0.0F, new Dilation(0.0F)), ModelTransform.origin(-4.0F, -2.0F, 0.0F));
 
         return TexturedModelData.of(modelData, 64, 64);
+    }
+
+    public void animate(AnimationState animationState, Animation animation, float age) {
+        super.animate(animationState, animation, age, 0.5F);
     }
 
     public void animate(Animation animation) {

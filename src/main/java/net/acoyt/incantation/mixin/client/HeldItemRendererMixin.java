@@ -20,7 +20,7 @@ public class HeldItemRendererMixin {
             )
     )
     private SkinTextures inca$armSkin(ClientPlayerEntity instance, Operation<SkinTextures> original) {
-        return IncaUtils.isIncaling(instance) ? IncaUtils.getTextures(instance.getUuid(), instance.getSkinTextures(), instance.getSkinTextures().model()) : original.call(instance);
+        return IncaUtils.isIncaling(instance) ? IncaUtils.getTextures(instance.getUuid(), instance.getSkinTextures()) : original.call(instance);
     }
 
     @WrapOperation(
@@ -31,6 +31,6 @@ public class HeldItemRendererMixin {
             )
     )
     private SkinTextures inca$armSkin(AbstractClientPlayerEntity instance, Operation<SkinTextures> original) {
-        return IncaUtils.isIncaling(instance) ? IncaUtils.getTextures(instance.getUuid(), instance.getSkinTextures(), instance.getSkinTextures().model()) : original.call(instance);
+        return IncaUtils.isIncaling(instance) ? IncaUtils.getTextures(instance.getUuid(), instance.getSkinTextures()) : original.call(instance);
     }
 }
