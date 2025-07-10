@@ -10,6 +10,7 @@ public class IncalingComponent implements AutoSyncedComponent, CommonTickingComp
     private final PlayerEntity player;
     private boolean incaling = false;
     private boolean submerged = false;
+    private boolean particles = false;
 
     public IncalingComponent(PlayerEntity player) {
         this.player = player;
@@ -24,8 +25,19 @@ public class IncalingComponent implements AutoSyncedComponent, CommonTickingComp
     }
 
     public void tick() {
+        // If they are not an Incaling, but they are still submerged, un-submerge them, and stop spawning particles.
+        // Only runs once, when conditions are met
         if (!incaling && submerged) {
             submerged = false;
+            particles = false;
+            this.sync();
+        }
+
+        // If they are submerged, but aren't spawning particles, start spawning particles
+        // Only runs once, when conditions are met
+        if (submerged && !particles) {
+            particles = true;
+            this.sync();
         }
     }
 
@@ -44,6 +56,15 @@ public class IncalingComponent implements AutoSyncedComponent, CommonTickingComp
 
     public void setSubmerged(boolean submerged) {
         this.submerged = submerged;
+        this.sync();
+    }
+
+    public boolean isParticles() {
+        return this.particles;
+    }
+
+    public void setParticles(boolean particles) {
+        this.particles = particles;
         this.sync();
     }
 

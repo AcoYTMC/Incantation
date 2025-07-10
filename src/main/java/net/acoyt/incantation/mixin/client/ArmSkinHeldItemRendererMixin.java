@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(HeldItemRenderer.class)
-public class HeldItemRendererMixin {
+public class ArmSkinHeldItemRendererMixin {
     @WrapOperation(
             method = "renderArm",
             at = @At(

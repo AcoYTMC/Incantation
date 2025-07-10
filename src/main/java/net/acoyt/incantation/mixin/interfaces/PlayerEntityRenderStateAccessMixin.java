@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PlayerEntityRenderState.class)
-public class PlayerRenderStateMixin implements PlayerEntityRenderStateAccess {
+public class PlayerEntityRenderStateAccessMixin implements PlayerEntityRenderStateAccess {
     @Unique private PlayerEntity playerEntity;
     @Unique private final AnimationState wingIdleState = new AnimationState();
 

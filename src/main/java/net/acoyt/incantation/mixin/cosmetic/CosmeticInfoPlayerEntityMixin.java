@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements PlayerCosmeticHolder {
+public abstract class CosmeticInfoPlayerEntityMixin extends LivingEntity implements PlayerCosmeticHolder {
     @Unique private CosmeticInfo cosmeticInfo = CosmeticInfo.getOrDefault(this.getUuid());
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected CosmeticInfoPlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 

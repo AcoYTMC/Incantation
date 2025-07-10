@@ -3,18 +3,19 @@
      "package": "net.acoyt.incantation.mixin",
      "compatibilityLevel": "JAVA_21",
      "mixins": [
-          "interfaces.PlayerEntityMixin"
+          "interfaces.WingIdlePlayerEntityMixin"
      ],
      "client": [
-          "client.AbstractClientPlayerEntityMixin",
-          "client.ArmorFeatureRendererMixin",
-          "client.CapeFeatureRendererMixin",
-          "client.HeldItemRendererMixin",
-          "client.PlayerEntityRendererMixin",
-          "client.WorldRendererMixin",
-       "cosmetic.PlayerEntityMixin",
-          "interfaces.PlayerEntityRendererMixin",
-          "interfaces.PlayerRenderStateMixin",
+          "client.SkinTexturesAbstractClientPlayerEntityMixin",
+          "client.DisableArmorFeatureRendererMixin",
+          "client.DisableCapeFeatureRendererMixin",
+          "client.ArmSkinHeldItemRendererMixin",
+          "client.SkinTexturesPlayerEntityRendererMixin",
+          "client.DisableOutlineWorldRendererMixin",
+          "cosmetic.CosmeticInfoPlayerEntityMixin",
+          "cosmetic.CosmeticPlayerEntityRendererMixin",
+          "interfaces.UpdatePlayerEntityRendererMixin",
+          "interfaces.PlayerEntityRenderStateAccessMixin",
           "modMenu.ModMenuEntryMixin",
           "modMenu.ModMenuMixin"
      ],

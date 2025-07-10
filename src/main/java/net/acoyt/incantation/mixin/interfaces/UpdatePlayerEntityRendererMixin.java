@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntityRenderer.class)
-public class PlayerEntityRendererMixin {
+public class UpdatePlayerEntityRendererMixin {
     @Inject(method = "updateRenderState(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V", at = @At("HEAD"))
     public void updateRenderState(AbstractClientPlayerEntity clientPlayer, PlayerEntityRenderState renderState, float f, CallbackInfo ci) {
         if (renderState instanceof PlayerEntityRenderStateAccess access) {

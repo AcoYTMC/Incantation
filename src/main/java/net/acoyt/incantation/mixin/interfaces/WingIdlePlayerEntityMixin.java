@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin extends LivingEntity implements PlayerAnimationStateAccess, PlayerCosmeticHolder {
+public abstract class WingIdlePlayerEntityMixin extends LivingEntity implements PlayerAnimationStateAccess, PlayerCosmeticHolder {
     @Unique private final AnimationState wingIdleState = new AnimationState();
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected WingIdlePlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
 

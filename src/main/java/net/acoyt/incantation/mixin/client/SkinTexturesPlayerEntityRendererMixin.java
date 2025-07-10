@@ -1,6 +1,5 @@
 package net.acoyt.incantation.mixin.client;
 
-import net.acoyt.incantation.client.render.entity.feature.IncaWingsFeatureRenderer;
 import net.acoyt.incantation.util.IncaTextures;
 import net.acoyt.incantation.util.IncaUtils;
 import net.acoyt.incantation.util.interfaces.PlayerEntityRenderStateAccess;
@@ -17,18 +16,12 @@ import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntityRenderer.class)
-public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityRenderState, PlayerEntityModel> {
-    public PlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel model, float shadowRadius) {
+public abstract class SkinTexturesPlayerEntityRendererMixin extends LivingEntityRenderer<AbstractClientPlayerEntity, PlayerEntityRenderState, PlayerEntityModel> {
+    public SkinTexturesPlayerEntityRendererMixin(EntityRendererFactory.Context ctx, PlayerEntityModel model, float shadowRadius) {
         super(ctx, model, shadowRadius);
-    }
-
-    @Inject(method = "<init>", at = @At("CTOR_HEAD"))
-    private void inca$addWingsFeature(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
-        this.addFeature(new IncaWingsFeatureRenderer(this, ctx.getEntityModels()));
     }
 
     @Inject(

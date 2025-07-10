@@ -8,6 +8,8 @@ import java.util.UUID;
 import static net.acoyt.acornlib.util.AcornLibUtils.acoUuid;
 
 public class IncaTextures {
+    public static final Identifier GUI_TEXTURE = Incantation.id("textures/gui/cosmetics.png");
+
     public static Identifier getTextures(UUID uuid, boolean slim) {
         if (uuid.equals(acoUuid)) {
             return ACO;
