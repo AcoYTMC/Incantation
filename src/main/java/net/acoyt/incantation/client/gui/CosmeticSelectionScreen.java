@@ -1,7 +1,9 @@
 package net.acoyt.incantation.client.gui;
 
 import net.acoyt.incantation.Incantation;
+import net.acoyt.incantation.util.CosmeticInfo;
 import net.acoyt.incantation.util.IncaTextures;
+import net.acoyt.incantation.util.interfaces.PlayerCosmeticHolder;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -18,7 +20,7 @@ public class CosmeticSelectionScreen extends Screen {
     private final int buttonScale = 18;
 
     private final int toggleScaleX = 60;
-    private final int toggleScaleY = 20;
+    private final int toggleScaleY = 18;
 
     private final Screen previousScreen;
     private RunnableWidget exitWidget;
@@ -58,9 +60,11 @@ public class CosmeticSelectionScreen extends Screen {
             }
         });
 
-        this.wingToggleWidget = new RunnableWidget(this.x + 157, this.y + 7, 0, 153, 60, 20, IncaTextures.GUI_TEXTURE, () -> {
-            if (client.player != null) {
-                //
+        this.wingToggleWidget = new RunnableWidget(this.x + 88, this.y + 23, 0, 153, 60, 20, IncaTextures.GUI_TEXTURE, () -> {
+            if (client.player instanceof PlayerCosmeticHolder holder) {
+                CosmeticInfo info = holder.getCosmeticInfo();
+                boolean bl = info.wings();
+                holder.setCosmeticInfo(info.withWings(!bl));
             }
         });
 
@@ -73,8 +77,9 @@ public class CosmeticSelectionScreen extends Screen {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-        if (this.player != null) {
-            //
+        boolean wings = false;
+        if (this.player instanceof PlayerCosmeticHolder holder) {
+            wings = holder.getCosmeticInfo().wings();
         }
         // Background?
         context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x, this.y, 0, 0, this.backWidth, this.backHeight, 256, 256);
@@ -88,9 +93,12 @@ public class CosmeticSelectionScreen extends Screen {
         context.drawText(this.textRenderer, this.title, this.width / 2 - textRenderer.getWidth(this.title) / 2, this.y + 7, 0xd6ce82, true);
 
         // Exit Button
-        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 157, this.y + 7, 0, 153, this.buttonScale, this.buttonScale, 256, 256);
+        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 157, this.y + 7, 0, 154, this.buttonScale, this.buttonScale, 256, 256);
 
         // Toggles
-        //context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 100, this.y + 57, 22, );
+        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 88, this.y + 23, 21, wings ? 154 : 135, this.toggleScaleX, this.toggleScaleY, 256, 256);
+        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 88, this.y + 49, 21, wings ? 154 : 135, this.toggleScaleX, this.toggleScaleY, 256, 256);
+        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 88, this.y + 75, 21, wings ? 154 : 135, this.toggleScaleX, this.toggleScaleY, 256, 256);
+        context.drawTexture(RenderLayer::getGuiTexturedOverlay, IncaTextures.GUI_TEXTURE, this.x + 88, this.y + 101, 21, wings ? 154 : 135, this.toggleScaleX, this.toggleScaleY, 256, 256);
     }
 }

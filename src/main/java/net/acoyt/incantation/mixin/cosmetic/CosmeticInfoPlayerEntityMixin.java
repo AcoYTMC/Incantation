@@ -18,12 +18,12 @@ public abstract class CosmeticInfoPlayerEntityMixin extends LivingEntity impleme
     }
 
     @Override
-    public CosmeticInfo inca$getCosmeticInfo() {
+    public CosmeticInfo getCosmeticInfo() {
         return this.cosmeticInfo;
     }
 
     @Override
-    public void inca$setCosmeticInfo(CosmeticInfo info) {
+    public void setCosmeticInfo(CosmeticInfo info) {
         this.cosmeticInfo = info;
     }
 }

@@ -9,6 +9,7 @@ import net.acoyt.incantation.compat.IncaConfig;
 import net.acoyt.incantation.init.IncaBlocks;
 import net.acoyt.incantation.init.IncaItems;
 import net.acoyt.incantation.networking.SubmersionTogglePacketReceiver;
+import net.acoyt.incantation.networking.SyncCosmeticsPacketReceiver;
 import net.acoyt.incantation.util.CosmeticInfo;
 import net.acoyt.incantation.util.IncaUtils;
 import net.fabricmc.api.ModInitializer;
@@ -41,6 +42,7 @@ public class Incantation implements ModInitializer {
 
         // Packets
         SubmersionTogglePacketReceiver.registerServerPacket();
+        SyncCosmeticsPacketReceiver.registerServerPacket();
 
         // Commands
         CommandRegistrationCallback.EVENT.register(IncalingCommand::register);
@@ -49,10 +51,8 @@ public class Incantation implements ModInitializer {
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             ServerPlayerEntity player = handler.player;
             UUID uuid = player.getUuid();
-            if (isSupporter(uuid)) {
-                if (!cosmeticData.containsKey(uuid)) {
-                    cosmeticData.put(uuid, CosmeticInfo.getOrDefault(uuid));
-                }
+            if (!cosmeticData.containsKey(uuid)) {
+                cosmeticData.put(uuid, CosmeticInfo.getOrDefault(uuid));
             }
         });
 	}

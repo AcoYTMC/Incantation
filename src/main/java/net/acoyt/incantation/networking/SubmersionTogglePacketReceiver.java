@@ -9,7 +9,7 @@ public class SubmersionTogglePacketReceiver {
     public static void registerServerPacket() {
         PayloadTypeRegistry.playC2S().register(SubmersionTogglePacketPayload.ID, SubmersionTogglePacketPayload.CODEC);
 
-        ServerPlayNetworking.registerGlobalReceiver(SubmersionTogglePacketPayload.ID, ((payload, context) -> context.server().execute(() -> {
+        ServerPlayNetworking.registerGlobalReceiver(SubmersionTogglePacketPayload.ID, (payload, context) -> context.server().execute(() -> {
             PlayerEntity player = context.player();
             if (player == null) {
                 return;
@@ -18,6 +18,6 @@ public class SubmersionTogglePacketReceiver {
             IncalingComponent incaling = IncalingComponent.get(player);
             boolean bl = incaling.isSubmerged();
             incaling.setSubmerged(!bl);
-        })));
+        }));
     }
 }

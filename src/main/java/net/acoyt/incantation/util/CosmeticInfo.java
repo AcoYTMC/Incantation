@@ -13,6 +13,10 @@ public record CosmeticInfo(UUID uuid, boolean wings) {
         return cosmeticData.getOrDefault(uuid, new CosmeticInfo(uuid, false));
     }
 
+    public static CosmeticInfo getDefault(UUID uuid) {
+        return new CosmeticInfo(uuid, false);
+    }
+
     public CosmeticInfo withWings(boolean wings) {
         return Incantation.isSupporter(this.uuid) ? new CosmeticInfo(this.uuid, wings) : new CosmeticInfo(this.uuid, this.wings);
     }
